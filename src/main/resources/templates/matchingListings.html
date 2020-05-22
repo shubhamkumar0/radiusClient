@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Radius Client</title>
+</head>
+
+<body>
+<div class="container">
+    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
+        <a class = "navbar-brand" href = "homepage-static.html">Radius Client App</a>
+        <button class = "navbar-toggler" type = "button" data-toggle = "collapse"
+                data-target = "#navbarSupportedContent"
+                aria-controls = "navbarSupportedContent" aria-expanded = "false"
+                aria-label = "Toggle navigation">
+            <span class = "navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <h2  class = "mt-4">Matched Properties</h2>
+
+    <table class="table">
+        <thead class = "thead-light">
+        <tr>
+            <th class="text-left">Match Percentage</th>
+            <th class="text-left">Latitude</th>
+            <th class="text-left">Longitude</th>
+            <th class="text-left">Price</th>
+            <th class="text-left">No. of bedrooms</th>
+            <th class="text-left">No. of bathrooms</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="listings: ${listingsWithMatchPercentage}">
+            <td th:text="${listings.key}"></td>
+            <td th:text="${listings.value.latitude}"></td>
+            <td th:text="${listings.value.longitude}"></td>
+            <td th:text="${listings.value.price}"></td>
+            <td th:text="${listings.value.nBedroom}"></td>
+            <td th:text="${listings.value.nBathroom}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

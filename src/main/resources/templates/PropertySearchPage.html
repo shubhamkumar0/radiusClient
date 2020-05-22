@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Radius Client</title>
+</head>
+<body>
+<div class = "container">
+    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
+        <a class = "navbar-brand" href = "homepage-static.html">Radius Client App</a>
+        <button class = "navbar-toggler" type = "button" data-toggle = "collapse"
+                data-target = "#navbarSupportedContent"
+                aria-controls = "navbarSupportedContent" aria-expanded = "false"
+                aria-label = "Toggle navigation">
+            <span class = "navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <form action="#" method="post" th:action="@{/}" th:object="${requirementEntity}">
+        <h2 class = "mt-4">Search!</h2>
+        <hr/>
+        <div class = "form-group row ">
+            <label for = "latitude" class = "col-sm-2.5 col-form-label">Enter latitude</label>
+            <div class = "col-sm-4">
+                <input th:field="*{latitude}" type = "number" min=0 step=0.01 class = "form-control" placeholder = "Enter latitude" required>
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "longitude" class = "col-sm-2.5 col-form-label">Enter longitude</label>
+            <div class = "col-sm-4">
+                <input th:field="*{longitude}" type = "number" min=0 step=0.01 class = "form-control" placeholder = "Enter longitude" required>
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "minBudget" class = "col-sm-2.5 col-form-label">Enter minimum price in thousands</label>
+            <div class = "col-sm-4">
+                <input th:field="*{minBudget}" type = "number" min=0 step=0.01 class = "form-control" placeholder = "Enter price">
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "maxBudget" class = "col-sm-2.5 col-form-label">Enter maximum price in thousands</label>
+            <div class = "col-sm-4">
+                <input th:field="*{maxBudget}" type = "number" min=0 step=0.01 class = "form-control" placeholder = "Enter price">
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "minBedroom" class = "col-sm-2.5 col-form-label">Enter minimum number of bedrooms</label>
+            <div class = "col-sm-4">
+                <input th:field="*{minBedroom}" type = "number" class = "form-control" placeholder = "Enter minimum number of bedrooms">
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "maxBedroom" class = "col-sm-2.5 col-form-label">Enter maximum number of bedrooms</label>
+            <div class = "col-sm-4">
+                <input th:field="*{maxBedroom}" type = "number" class = "form-control" placeholder = "Enter maximum number of bedrooms">
+            </div>
+        </div>
+
+        <div class = "form-group row ">
+            <label for = "minBathroom" class = "col-sm-2.5 col-form-label">Enter minimum number of bathrooms</label>
+            <div class = "col-sm-4">
+                <input th:field="*{minBathroom}" type = "number" class = "form-control" placeholder = "Enter minimum number of bathrooms">
+            </div>
+        </div>
+        <div class = "form-group row ">
+            <label for = "maxBathroom" class = "col-sm-2.5 col-form-label">Enter maximum number of bathrooms</label>
+            <div class = "col-sm-4">
+                <input th:field="*{maxBathroom}" type = "number" class = "form-control" placeholder = "Enter maximum number of bathrooms">
+            </div>
+        </div>
+        <div class = "form-group row">
+            <div class = "col-sm-2.5">
+                <button type = "submit" class = "btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js"> </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" > </script>
+<script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" > </script>
+</body>
+</html>
