@@ -1,4 +1,4 @@
-package com.example.radiusClient;
+package com.example.radiusClient.DAO;
 
 import org.springframework.stereotype.Component;
 

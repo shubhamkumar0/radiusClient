@@ -1,5 +1,9 @@
-package com.example.radiusClient;
+package com.example.radiusClient.Controller;
 
+import com.example.radiusClient.DAO.PropertyEntity;
+import com.example.radiusClient.DAO.RequirementEntity;
+import com.example.radiusClient.Service.MatchingService;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static java.util.Collections.reverseOrder;
+import static java.util.Comparator.comparing;
 
 @Controller
 public class HomeController {
@@ -23,6 +30,9 @@ public class HomeController {
 
     @Autowired
     private RequirementEntity requirementEntity;
+
+    @Autowired
+    private MatchingService matchingService;
 
     @RequestMapping("/")
     public ModelAndView home() {
@@ -34,29 +44,23 @@ public class HomeController {
 
     @PostMapping("/")
     public ModelAndView submitHome(RequirementEntity requirementEntity) {
-        List<PropertyEntity> matchedProperties = new ArrayList<PropertyEntity>();
-        PropertyEntity one = new PropertyEntity(1D,1D,2D,3,4);
-        PropertyEntity two = new PropertyEntity(1D,1D,2D,3,4);
-        PropertyEntity three = new PropertyEntity(1D,1D,2D,3,4);
-        Map<Float, Object> listingsWithMatchPercentage = new TreeMap<>(new DescOrder());
-        listingsWithMatchPercentage.put(0.4F,one);
-        listingsWithMatchPercentage.put(0.5F,two);
-        listingsWithMatchPercentage.put(0.6F,three);
         logger.info(requirementEntity.toString());
         String viewName = "matchingListings";
-
         //fetch matches from 3 services, location service, room service (:P), price service
         //all services return Map<Float, Object> which we will combine via code here
+        List<Pair<Double, PropertyEntity>> matches = matchingService.getMatchesByLocation(requirementEntity);
+        final Comparator<Pair<Double, PropertyEntity>> c = reverseOrder(comparing(Pair::getKey));
+        Collections.sort(matches,c);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("listingsWithMatchPercentage", listingsWithMatchPercentage);
+        model.put("listingsWithMatchPercentage", matches);
         return new ModelAndView(viewName, model);
     }
 
-    static class DescOrder implements Comparator<Float> {
+    static class DescOrder implements Comparator<Double> {
 
         @Override
-        public int compare(Float o1, Float o2) {
+        public int compare(Double o1, Double o2) {
             return o2.compareTo(o1);
         }
     }
