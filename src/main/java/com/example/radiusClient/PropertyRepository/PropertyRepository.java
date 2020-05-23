@@ -1,6 +1,6 @@
 package com.example.radiusClient.PropertyRepository;
 
-import com.example.radiusClient.DAO.PropertyEntity;
+import com.example.radiusClient.Dao.PropertyEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

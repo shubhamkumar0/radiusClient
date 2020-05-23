@@ -24,14 +24,14 @@
             <th class="text-left">Match Percentage</th>
             <th class="text-left">Latitude</th>
             <th class="text-left">Longitude</th>
-            <th class="text-left">Price</th>
+            <th class="text-left">Price in thousands</th>
             <th class="text-left">No. of bedrooms</th>
             <th class="text-left">No. of bathrooms</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="listings: ${listingsWithMatchPercentage}">
-            <td th:text="${listings.key}"></td>
+            <td th:text="${listings.key}+'%'"></td>
             <td th:text="${listings.value.latitude}"></td>
             <td th:text="${listings.value.longitude}"></td>
             <td th:text="${listings.value.price}"></td>

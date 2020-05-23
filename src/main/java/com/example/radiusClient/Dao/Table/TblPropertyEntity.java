@@ -1,13 +1,11 @@
-package com.example.radiusClient.DAO.Table;
+package com.example.radiusClient.Dao.Table;
 
-import com.example.radiusClient.DAO.PropertyEntity;
+import com.example.radiusClient.Dao.PropertyEntity;
 import javafx.util.Pair;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TblPropertyEntity {
 

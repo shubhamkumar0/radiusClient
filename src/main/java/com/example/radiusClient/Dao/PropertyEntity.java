@@ -1,6 +1,5 @@
-package com.example.radiusClient.DAO;
+package com.example.radiusClient.Dao;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

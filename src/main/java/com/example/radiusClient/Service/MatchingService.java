@@ -1,7 +1,7 @@
 package com.example.radiusClient.Service;
 
-import com.example.radiusClient.DAO.PropertyEntity;
-import com.example.radiusClient.DAO.RequirementEntity;
+import com.example.radiusClient.Dao.PropertyEntity;
+import com.example.radiusClient.Dao.RequirementEntity;
 import com.example.radiusClient.DaoImpl.MatchingDaoImpl;
 import javafx.util.Pair;
 import org.slf4j.Logger;

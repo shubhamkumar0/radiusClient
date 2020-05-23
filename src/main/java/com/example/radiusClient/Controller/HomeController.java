@@ -1,7 +1,7 @@
 package com.example.radiusClient.Controller;
 
-import com.example.radiusClient.DAO.PropertyEntity;
-import com.example.radiusClient.DAO.RequirementEntity;
+import com.example.radiusClient.Dao.PropertyEntity;
+import com.example.radiusClient.Dao.RequirementEntity;
 import com.example.radiusClient.Service.MatchingService;
 import javafx.util.Pair;
 import org.slf4j.Logger;
@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import static java.util.Collections.reverseOrder;
 import static java.util.Comparator.comparing;
