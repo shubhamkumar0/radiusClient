@@ -18,7 +18,7 @@
     </nav>
     <h2  class = "mt-4">Matched Properties</h2>
 
-    <table class="table">
+    <table class="table" style="border-spacing: 0 5px;border-collapse: separate;">
         <thead class = "thead-light">
         <tr>
             <th class="text-left">Match Percentage</th>
@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="listings: ${listingsWithMatchPercentage}">
+        <tr style=" background-color: #f1f1f1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" th:each="listings: ${listingsWithMatchPercentage}">
             <td th:text="${listings.key}+'%'" ></td>
             <td th:text="${#numbers.formatDecimal(listings.value.key*0.62, 2, 2)}"></td>
             <td th:text="${#numbers.formatDecimal(listings.value.value.price, 2, 2)}"></td>
