@@ -38,4 +38,4 @@ If bedroom and bathroom fall between min and max(provided both are given), each 
 If min or max is not given, +/- 1 is 20% contribution and else, 10% contribution.
 
 
-##Run the file radiusDB.sql to setup the mysql database.
+## Run the file radiusDB.sql to setup the mysql database.
