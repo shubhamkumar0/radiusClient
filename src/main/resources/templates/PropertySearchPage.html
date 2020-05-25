@@ -4,79 +4,134 @@
     <meta charset="UTF-8">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link th:ref="@{/css/main.css}" rel="stylesheet"/>
     <title>Radius Client</title>
-</head>
-<body>
-<div class = "container">
-    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
-        <a class = "navbar-brand" href = "homepage-static.html">Radius Client App</a>
-        <button class = "navbar-toggler" type = "button" data-toggle = "collapse"
-                data-target = "#navbarSupportedContent"
-                aria-controls = "navbarSupportedContent" aria-expanded = "false"
-                aria-label = "Toggle navigation">
-            <span class = "navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <form name="searchPropertyForm" action="#" method="post" th:action="@{/}" th:object="${requirementEntity}" onsubmit="return validateChanges();">
-        <h2 class = "mt-4">Search!</h2>
-        <hr/>
-        <div class = "form-group row ">
-            <label for = "latitude" class = "col-sm-2.5 col-form-label">Enter latitude</label>
-            <div class = "col-sm-4">
-                <input th:field="*{latitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter latitude" required>
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "longitude" class = "col-sm-2.5 col-form-label">Enter longitude</label>
-            <div class = "col-sm-4">
-                <input th:field="*{longitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter longitude" required>
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "minBudget" class = "col-sm-2.5 col-form-label">Enter minimum price in thousands</label>
-            <div class = "col-sm-4">
-                <input name = "minBudget" th:field="*{minBudget}" type = "number" min=1 step=0.01 class = "form-control" placeholder = "Enter price">
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "maxBudget" class = "col-sm-2.5 col-form-label">Enter maximum price in thousands</label>
-            <div class = "col-sm-4">
-                <input name = "maxBudget" th:field="*{maxBudget}" type = "number" min=1 step=0.01 class = "form-control" placeholder = "Enter price">
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "minBedroom" class = "col-sm-2.5 col-form-label">Enter minimum number of bedrooms</label>
-            <div class = "col-sm-4">
-                <input name="minBedroom" th:field="*{minBedroom}" type = "number" min=1 class = "form-control" placeholder = "Enter minimum number of bedrooms">
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "maxBedroom" class = "col-sm-2.5 col-form-label">Enter maximum number of bedrooms</label>
-            <div class = "col-sm-4">
-                <input name="maxBedroom" th:field="*{maxBedroom}" type = "number" min=1 class = "form-control" placeholder = "Enter maximum number of bedrooms">
-            </div>
-        </div>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-        <div class = "form-group row ">
-            <label for = "minBathroom" class = "col-sm-2.5 col-form-label">Enter minimum number of bathrooms</label>
-            <div class = "col-sm-4">
-                <input name="minBathroom" th:field="*{minBathroom}" type = "number" min=1 class = "form-control" placeholder = "Enter minimum number of bathrooms">
-            </div>
-        </div>
-        <div class = "form-group row ">
-            <label for = "maxBathroom" class = "col-sm-2.5 col-form-label">Enter maximum number of bathrooms</label>
-            <div class = "col-sm-4">
-                <input name="maxBathroom" th:field="*{maxBathroom}" type = "number" min=1 class = "form-control" placeholder = "Enter maximum number of bathrooms">
-            </div>
-        </div>
-        <div class = "form-group row">
-            <div class = "col-sm-2.5">
-                <button type = "submit"
-                        class = "btn btn-primary" >Submit</button>
-            </div>
-        </div>
-    </form>
     <script th:inline="javascript">
+        /*<![CDATA[*/
+
+
+          function loadMap() {
+          $('#addPropertyForm').toggle();
+          $('#searchMessage').toggle();
+            var latlng = new google.maps.LatLng(4.3695030, 101.1224120);
+            var myOptions = {
+              zoom: 4,
+              center: latlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_container"),myOptions);
+
+            var marker = new google.maps.Marker({
+              position: latlng,
+              map: map,
+              title:"my hometown, Malim Nawar!"
+            });
+          }
+         /*]]>*/
+    </script>
+</head>
+<body onload="loadMap()" style="background-color:azure;">
+<div style="background-color:grey; width:100%; height:100%">
+    <div class = "container" id="searchDiv" style="height:600px; width:900px; background-color:azure;padding-top:50px;position:relative;top:30px;border-radius:10px">
+        <nav class = "d-flex flex-row navbar navbar-expand-sm navbar-dark " style="background-color:azure;">
+        </nav>
+        <div class="d-flex flex-row">
+            <div style="width: 50%; height: 50%; padding-top:100px; padding-left:200px;">
+                <div data-tilt data-tilt-scale="1.2" style="position:relative;left:-90px;">
+                    <img th:src="@{/radius.png}" alt="IMG" style="border-radius:30px">
+                </div>
+                <a id="registerMessage" style="position:relative; top:50px; left:-90px;cursor: pointer;" onclick="toggleForm()">Register your property with us</a>
+                <a id="searchMessage" style="position:relative; top:50px; left:-60px;cursor: pointer;" onclick="toggleForm()">Search for properties</a>
+            </div>
+            <div style="width: 50%; height: 50%; padding-top:20px;">
+                <form name="searchPropertyForm" id="searchForm" action="#" method="post" th:action="@{/}" th:object="${requirementEntity}" onsubmit="return validateChanges();">
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input th:field="*{latitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter latitude" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input th:field="*{longitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter longitude" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name = "minBudget" th:field="*{minBudget}" type = "number" min=1 step=0.01 class = "form-control" placeholder = "Enter minimum price">
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name = "maxBudget" th:field="*{maxBudget}" type = "number" min=1 step=0.01 class = "form-control" placeholder = "Enter maximum price">
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name="minBedroom" th:field="*{minBedroom}" type = "number" min=1 class = "form-control" placeholder = "Enter minimum number of bedrooms">
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name="maxBedroom" th:field="*{maxBedroom}" type = "number" min=1 class = "form-control" placeholder = "Enter maximum number of bedrooms">
+                        </div>
+                    </div>
+
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name="minBathroom" th:field="*{minBathroom}" type = "number" min=1 class = "form-control" placeholder = "Enter minimum number of bathrooms">
+                        </div>
+                    </div>
+                    <div class = "form-group row " >
+                        <div class = "col-sm-9">
+                            <input name="maxBathroom" th:field="*{maxBathroom}" type = "number" min=1 class = "form-control" placeholder = "Enter maximum number of bathrooms">
+                        </div>
+                    </div>
+                    <div class = "form-group row" style="padding-left:30%">
+                        <div class = "col-sm-2.5">
+                            <button type = "submit"
+                                    class = "btn btn-primary" >Search Properties</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="#" id="addPropertyForm" method="post" th:action="@{/addProperty}" th:object="${propertyEntity}">
+                    <div class = "form-group row ">
+                        <div class = "col-sm-9">
+                            <input th:field="*{latitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter latitude" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row ">
+                        <div class = "col-sm-9">
+                            <input th:field="*{longitude}" type = "number" step=0.00000001 class = "form-control" placeholder = "Enter longitude" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row ">
+                        <div class = "col-sm-9">
+                            <input th:field="*{price}" type = "number" min=1 step=0.01 class = "form-control" placeholder = "Enter price" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row ">
+                        <div class = "col-sm-9">
+                            <input th:field="*{nBedroom}" type = "number" min=1 class = "form-control" placeholder = "Enter number of bedrooms" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row ">
+                        <div class = "col-sm-9">
+                            <input th:field="*{nBathroom}" type = "number" min=1 class = "form-control" placeholder = "Enter number of bathrooms" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row" style="padding-left:30%">
+                        <div class = "col-sm-2.5">
+                            <button type = "submit" class = "btn btn-primary">Add Property</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="map_container"></div>
+        <script th:inline="javascript">
         /*<![CDATA[*/
         function validateChanges() {
             if ((searchPropertyForm.minBudget.value == '' && searchPropertyForm.maxBudget.value == '')) {
@@ -94,9 +149,24 @@
         }
         /*]]>*/
     </script>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function toggleForm() {
+            $('#searchForm').toggle();
+            $('#searchMessage').toggle();
+            $('#addPropertyForm').toggle();
+            $('#registerMessage').toggle();
+        }
+        /*]]>*/
+    </script>
 </div>
+
 <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js"> </script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" > </script>
 <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" > </script>
+<script src="tilt.jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
+<script src="https://unpkg.com/tilt.js@1.1.21/dest/tilt.jquery.min.js"></script>
 </body>
 </html>

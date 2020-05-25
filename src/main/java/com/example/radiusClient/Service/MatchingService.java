@@ -22,7 +22,7 @@ public class MatchingService {
     @Autowired
     private MatchingDaoImpl matchingDaoImpl;
 
-    public List<Pair<Double, PropertyEntity>> getMatchesByLocation(RequirementEntity requirementEntity) {
+    public List<Pair<Double, Pair<Double, PropertyEntity>>> getMatchesByLocation(RequirementEntity requirementEntity) {
         List<Pair<Double, PropertyEntity>> matches = matchingDaoImpl.getAllMatchesByLocation(requirementEntity);
         Double minBudget = requirementEntity.getMinBudget();
         Double maxBudget = requirementEntity.getMaxBudget();
@@ -45,7 +45,7 @@ public class MatchingService {
         Integer minReqBathroom = requirementEntity.getMinBathroom();
         Integer maxReqBathroom = requirementEntity.getMaxBathroom();
 
-        List<Pair<Double, PropertyEntity>> percentageMatches = new ArrayList<>();
+        List<Pair<Double, Pair<Double, PropertyEntity>>> percentageMatches = new ArrayList<>();
 
         for(int i=0;i<matches.size();i++){
             Pair<Double,PropertyEntity> temp = matches.get(i);
@@ -72,7 +72,7 @@ public class MatchingService {
 
             String result = String.format("%.2f", percentageMatch);
             if(percentageMatch>40D){
-                Pair<Double,PropertyEntity> newPair = new Pair<>(Double.valueOf(result),temp.getValue());
+                Pair<Double,Pair<Double,PropertyEntity>> newPair = new Pair<>(Double.valueOf(result),temp);
                 percentageMatches.add(newPair);
             }
         }

@@ -1,0 +1,7 @@
+.hoverable-image{
+transform: perspective(1000px) rotateX(0deg) rotateY(0deg)   scale3d(1, 1, 1);
+transform-style: preserve-3d;
+background-repeat: no-repeat;
+background-image: url("./static/radius.png")
+will-change: transform;
+  }
