@@ -6,6 +6,8 @@ You can register any property to our platform through this page and search for p
 #### Latitude and Longitude are given in degrees. 
 #### Currently there is no support for multiple currency on the platform.
 #### Distances are given in miles.
+#### minimum number of bedrooms & bathrooms is 1
+#### minimum price is 1
 
 ### The following algorithm assigns percentage matches to the properties:
 Percentages are assigned based on distance(30%), price(30%), number of bedroom & bathrooms(20%+20%).
