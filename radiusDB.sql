@@ -1,3 +1,5 @@
+CREATE SCHEMA `radius`;
+
 CREATE TABLE radius.`property_entity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `latitude` double NOT NULL,
