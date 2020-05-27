@@ -20,8 +20,9 @@ public class MatchingService {
     @Autowired
     private MatchingDaoImpl matchingDaoImpl;
 
-    public List<Pair<Double, Pair<Double, PropertyEntity>>> getMatchesByLocation(RequirementEntity requirementEntity) {
-        List<Pair<Double, PropertyEntity>> matches = matchingDaoImpl.getAllMatchesByLocation(requirementEntity);
+    public List<Pair<Double, Pair<Double, PropertyEntity>>> getMatches(RequirementEntity requirementEntity) {
+        //get matches with percentage from database layer
+        List<Pair<Double, PropertyEntity>> matches = matchingDaoImpl.getAllMatches(requirementEntity);
         Double minBudget = requirementEntity.getMinBudget();
         Double maxBudget = requirementEntity.getMaxBudget();
         Double lowerPriceCutOff = null;
@@ -49,8 +50,8 @@ public class MatchingService {
             Pair<Double,PropertyEntity> temp = matches.get(i);
             Double percentageMatch;
 
-            //adding percentage for match, based on distance
-            if(temp.getKey()<3.218688){
+            //adding percentage for match, based on distance; less than 2 miles 30% else decreases linearly till 10 miles
+            if(temp.getKey()<3.218688){//2 miles in kms
                 percentageMatch = Double.valueOf(30);
             } else {
                 percentageMatch = ((-15/4)*((temp.getKey()*0.621371) -10)) + 1;

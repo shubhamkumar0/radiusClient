@@ -25,7 +25,7 @@ public class MatchingDaoImpl {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public List<Pair<Double, PropertyEntity>> getAllMatchesByLocation(RequirementEntity requirementEntity) {
+    public List<Pair<Double, PropertyEntity>> getAllMatches(RequirementEntity requirementEntity) {
         Double latitude = requirementEntity.getLatitude();
         Double longitude = requirementEntity.getLongitude();
         Double minBudget = requirementEntity.getMinBudget();
@@ -69,7 +69,7 @@ public class MatchingDaoImpl {
             minBathroom = minReqBathroom - 2;
             maxBathroom = maxReqBathroom + 2;
         }
-
+        //calculating first-cut bounding box: https://www.movable-type.co.uk/scripts/latlong-db.html
         Double radDist = 16.09/6371;
         Double maxLat = latitude + Math.toDegrees(radDist);
         Double minLat = latitude - Math.toDegrees(radDist);
@@ -100,8 +100,8 @@ public class MatchingDaoImpl {
         map.put("maxLat",maxLat);
         map.put("minLon",minLon);
         map.put("maxLon",maxLon);
-        map.put("rad",16.09);
-        map.put("R",6371);
+        map.put("rad",16.09);//10 miles in km
+        map.put("R",6371);//radius of earth in km
         map.put("minBudget", lowerPrice);
         map.put("maxBudget", higherPrice);
         map.put("minBedroom",minBedroom);

@@ -50,9 +50,9 @@ public class HomeController {
     public ModelAndView submitHome(RequirementEntity requirementEntity) {
         logger.info(requirementEntity.toString());
         String viewName = "matchingListings";
-        //fetch matches from 3 services, location service, room service (:P), price service
-        //all services return Map<Float, Object> which we will combine via code here
-        List<Pair<Double, Pair<Double, PropertyEntity>>> matches = matchingService.getMatchesByLocation(requirementEntity);
+        //fetch matches with percentage from matching service
+        List<Pair<Double, Pair<Double, PropertyEntity>>> matches = matchingService.getMatches(requirementEntity);
+        //display matches in descending order of percentage
         final Comparator<Pair<Double, Pair<Double, PropertyEntity>>> c = reverseOrder(comparing(Pair::getKey));
         Collections.sort(matches,c);
 
@@ -71,7 +71,6 @@ public class HomeController {
     }
 
     static class DescOrder implements Comparator<Double> {
-
         @Override
         public int compare(Double o1, Double o2) {
             return o2.compareTo(o1);
