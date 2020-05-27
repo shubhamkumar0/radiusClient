@@ -36,18 +36,4 @@ public class TblPropertyEntity {
             return ans;
         }
     }
-
-    public static class TblPropertySoleEntityMapper implements RowMapper<PropertyEntity> {
-        @Override
-        public PropertyEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
-            PropertyEntity dao = new PropertyEntity();
-            dao.setId(rs.getLong(C_ID));
-            dao.setLatitude(rs.getDouble(C_Latitude));
-            dao.setLongitude(rs.getDouble(C_Longitude));
-            dao.setPrice(rs.getDouble(C_Price));
-            dao.setnBedroom(rs.getInt(C_N_Bedroom));
-            dao.setnBathroom(rs.getInt(C_N_Bathroom));
-            return dao;
-        }
-    }
 }

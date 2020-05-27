@@ -15,8 +15,6 @@ import java.util.List;
 @Service
 public class MatchingService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private MatchingDaoImpl matchingDaoImpl;
 
