@@ -41,3 +41,17 @@ If min or max is not given, +/- 1 is 20% contribution and else, 10% contribution
 
 
 ## Run the file radiusDB.sql to setup the mysql database.
+## How to start
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/radius
+spring.datasource.username=root
+spring.datasource.password=root123
+```
+change these values in application properties to your local mysql username & password. Also if the port for mysql is not 3306 change that too.
+
+Then navigating to the project folder 
+```
+cd radiusCLient
+mvn clean install
+```
+The project should be running on http://localhost:90/
